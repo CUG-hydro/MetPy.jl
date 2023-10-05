@@ -1,0 +1,55 @@
+```{julia}
+using Test
+using Metpy
+init_metpy()
+```
+
+```{julia}
+using UnPack
+@unpack metpy.calc
+# using metpy.calc
+```
+
+
+```{ptyhon}
+quantity(numpy.ma.array(d, mask=mask), u)
+```
+
+
+```{julia}
+# run(`which python`)
+```
+
+
+```{julia}
+
+Ta = [10, 20, 30.0] * units.degC
+RH = [80, 70, 75.0] * units.percent
+
+ca.heat_index(Ta, RH)
+
+
+heat_index.(Ta.magnitude, RH.magnitude)
+```
+
+```{julia}
+using PyCall
+import PyCall: @py_str
+#If we are on conda, import zarr
+pyimport_conda("metpy", "metpy")
+```
+
+```{julia}
+versioninfo()
+```
+
+
+```{python}
+import numpy
+m = 5
+s = numpy.zeros((3, m, m))
+for i in numpy.ndindex(s.shape):
+  s[i] = i[1] + i[2]**2
+s
+# numpy.ndindex(s.shape)
+```
