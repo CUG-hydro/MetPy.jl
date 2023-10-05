@@ -2,7 +2,7 @@
 
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://jl-spatial.github.io/Metpy.jl/dev)
 [![CI](https://github.com/jl-spatial/Metpy.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/jl-spatial/Metpy.jl/actions/workflows/CI.yml)
-[![Codecov](https://codecov.io/gh/jl-spatial/Metpy.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/jl-spatial/Metpy.jl)
+[![Codecov](https://codecov.io/gh/jl-spatial/Metpy.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/jl-spatial/Metpy.jl)
 
 > Just a try
 
