@@ -5,7 +5,11 @@ module MetPy
 
 using UnPack
 using PyCall
-import PyCall: @py_str
+using PyCall: @py_str
+
+
+include("helper.jl")
+include("assert_almost_equal.jl")
 
 
 const numpy = PyNULL()
@@ -20,13 +24,32 @@ function init_metpy()
   copy!(metpy, pyimport_conda("metpy", "metpy"))
   copy!(units, pyimport_conda("metpy.units", "metpy").units)
   copy!(calc, pyimport_conda("metpy.calc", "metpy"))
+
+  ## the issue of `numpy.ma.array`
+  py"""
+  import numpy
+  from metpy.units import units
+
+  def mask_array(x, u, mask=None):
+    data = numpy.ma.array(x, mask=mask)
+    return units.Quantity(data, u)
+  """
   nothing
 end
 
-include("helper.jl")
 
+mask_array(x::AbstractArray, u=""; mask=nothing) = py"mask_array"(x, u, mask)
 
-export init_metpy, numpy, metpy, units, calc
+array_type = mask_array
+
+# function mask_array(x::AbstractArray, u; mask=nothing)
+#   data = numpy.ma.array(x, mask=mask)
+#   units.Quantity(data, u)
+# end
+
+export numpy, metpy, units, calc
+export init_metpy
+export mask_array, array_type
 
 
 end # module Metpy
